@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golfclub Clostermannshof – 3D-Platz</title>
+<style>html,body{margin:0;height:100%;background:#dfe7ea;font-family:Arial,sans-serif}#l{position:fixed;inset:0;display:grid;place-items:center;color:#4e1967;letter-spacing:.2em;font-size:13px;text-transform:uppercase}#l i{display:block;width:180px;height:3px;background:#ccc;margin-top:12px;overflow:hidden}#l b{display:block;height:100%;width:0;background:#4e1967;transition:width .3s}</style>
+</head><body><div id="l"><div>Golfplatz wird geladen<i><b id="b"></b></i></div></div>
+<script>
+var parts=['p1.txt','p2.txt','p3.txt','p4.txt'],done=0;
+Promise.all(parts.map(function(p){return fetch(p).then(function(r){return r.text()}).then(function(t){done++;document.getElementById('b').style.width=(done/parts.length*100)+'%';return t})}))
+.then(function(a){document.open();document.write(a.join(''));document.close();});
+</script></body></html>
